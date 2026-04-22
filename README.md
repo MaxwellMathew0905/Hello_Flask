@@ -261,3 +261,81 @@ Output: Error Message
 */
 // =========================================
 ```
+
+
+
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+// MAIN APP
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DisplayPage(),
+    );
+  }
+}
+
+// DISPLAY PAGE
+class DisplayPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Restaurant")),
+
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.network("https://via.placeholder.com/150"),
+            Text("My Restaurant"),
+          ],
+        ),
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MenuPage()),
+          );
+        },
+      ),
+    );
+  }
+}
+
+// MENU PAGE
+class MenuPage extends StatelessWidget {
+
+  final List food = [
+    {"name": "Pizza", "price": 200},
+    {"name": "Burger", "price": 150},
+    {"name": "Pasta", "price": 180},
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Menu")),
+
+      body: ListView.builder(
+        itemCount: food.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: Icon(Icons.fastfood),
+            title: Text(food[index]['name']),
+            subtitle: Text("₹${food[index]['price']}"),
+          );
+        },
+      ),
+    );
+  }
+}
