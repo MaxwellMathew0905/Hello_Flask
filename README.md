@@ -496,4 +496,99 @@ class RegisterPage extends StatelessWidget {
       ),
     );
   }
+
+
+Q6 
+  import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+// MAIN APP
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: CollegePage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+// COLLEGE PAGE
+class CollegePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("My College"),
+        centerTitle: true,
+      ),
+
+      // SIDEBAR MENU (Tabs)
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: Column(
+                children: [
+                  Icon(Icons.school, size: 50),
+                  Text("My College", style: TextStyle(fontSize: 18)),
+                ],
+              ),
+            ),
+            ListTile(title: Text("About Us")),
+            ListTile(title: Text("Academics")),
+            ListTile(title: Text("Library")),
+            ListTile(title: Text("Placements")),
+            ListTile(title: Text("Admissions")),
+          ],
+        ),
+      ),
+
+      // BODY
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+
+            // LOGO
+            SizedBox(height: 20),
+            Icon(Icons.school, size: 80),
+
+            SizedBox(height: 10),
+
+            // COLLEGE NAME
+            Text(
+              "My College",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+
+            SizedBox(height: 20),
+
+            // ANNOUNCEMENT SECTION
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(15),
+              margin: EdgeInsets.all(10),
+              color: Colors.grey[300],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Announcements",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 10),
+                  Text("• Admissions Open 2026"),
+                  Text("• New Courses Available"),
+                  Text("• Placement Drive Next Week"),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 }
