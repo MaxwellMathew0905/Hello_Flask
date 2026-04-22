@@ -592,3 +592,23 @@ class CollegePage extends StatelessWidget {
   }
 }
 }
+
+
+
+
+manifest
+{
+  "name": "College App",
+  "short_name": "College",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0000ff",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
