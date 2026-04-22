@@ -612,3 +612,117 @@ manifest
     }
   ]
 }
+
+
+login signup 
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+// MAIN APP
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: LoginPage(),
+    );
+  }
+}
+
+// ================= LOGIN PAGE =================
+class LoginPage extends StatelessWidget {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Clinical ERP - Login")),
+
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(
+              controller: email,
+              decoration: InputDecoration(labelText: "Email"),
+            ),
+
+            TextField(
+              controller: password,
+              decoration: InputDecoration(labelText: "Password"),
+              obscureText: true,
+            ),
+
+            SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: () {
+                print("Login Successful");
+              },
+              child: Text("Login"),
+            ),
+
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegisterPage()),
+                );
+              },
+              child: Text("New User? Register"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ================= REGISTRATION PAGE =================
+class RegisterPage extends StatelessWidget {
+  TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Clinical ERP - Register")),
+
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(
+              controller: name,
+              decoration: InputDecoration(labelText: "Name"),
+            ),
+
+            TextField(
+              controller: email,
+              decoration: InputDecoration(labelText: "Email"),
+            ),
+
+            TextField(
+              controller: password,
+              decoration: InputDecoration(labelText: "Password"),
+              obscureText: true,
+            ),
+
+            SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: () {
+                print("Registration Successful");
+              },
+              child: Text("Register"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
