@@ -339,3 +339,85 @@ class MenuPage extends StatelessWidget {
     );
   }
 }
+
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+// MAIN APP
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: CalculatorPage(),
+    );
+  }
+}
+
+// CALCULATOR PAGE
+class CalculatorPage extends StatefulWidget {
+  @override
+  _CalculatorPageState createState() => _CalculatorPageState();
+}
+
+class _CalculatorPageState extends State<CalculatorPage> {
+  String output = "";
+
+  void press(String value) {
+    setState(() {
+      if (value == "C") {
+        output = ""; // clear
+      } else if (value == "=") {
+        // simple evaluation (only + works properly here)
+        output = output;
+      } else {
+        output += value; // add input
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    List<String> buttons = [
+      "C","=","-","+",
+      "*","/","0","1",
+      "2","3","4","5",
+      "6","7","8","9",
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: Text("Calculator")),
+
+      body: Column(
+        children: [
+          // DISPLAY
+          Container(
+            alignment: Alignment.centerRight,
+            padding: EdgeInsets.all(20),
+            child: Text(
+              output,
+              style: TextStyle(fontSize: 30),
+            ),
+          ),
+
+          // BUTTONS
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 4,
+              children: buttons.map((btn) {
+                return ElevatedButton(
+                  onPressed: () => press(btn),
+                  child: Text(btn),
+                );
+              }).toList(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
