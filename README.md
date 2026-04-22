@@ -421,3 +421,79 @@ class _CalculatorPageState extends State<CalculatorPage> {
     );
   }
 }
+
+
+Q5 firebase
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+
+// MAIN APP
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: RegisterPage(),
+    );
+  }
+}
+
+// REGISTRATION PAGE
+class RegisterPage extends StatelessWidget {
+
+  TextEditingController name = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController guests = TextEditingController();
+
+  void registerUser() {
+    FirebaseFirestore.instance.collection("customers").add({
+      "name": name.text,
+      "phone": phone.text,
+      "guests": guests.text,
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Table Booking")),
+
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+
+            TextField(
+              controller: name,
+              decoration: InputDecoration(labelText: "Customer Name"),
+            ),
+
+            TextField(
+              controller: phone,
+              decoration: InputDecoration(labelText: "Phone Number"),
+            ),
+
+            TextField(
+              controller: guests,
+              decoration: InputDecoration(labelText: "No. of Guests"),
+            ),
+
+            SizedBox(height: 20),
+
+            ElevatedButton(
+              onPressed: registerUser,
+              child: Text("Register"),
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+}
